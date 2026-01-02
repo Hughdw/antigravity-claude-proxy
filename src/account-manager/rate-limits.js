@@ -51,6 +51,7 @@ export function clearExpiredLimits(accounts) {
 
     for (const account of accounts) {
         if (account.isRateLimited && account.rateLimitResetTime && account.rateLimitResetTime <= now) {
+            account.isRateLimited = false;
             account.rateLimitResetTime = null;
             cleared++;
             logger.success(`[AccountManager] Rate limit expired for: ${account.email}`);
