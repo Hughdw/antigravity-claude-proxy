@@ -67,21 +67,27 @@ document.addEventListener('alpine:init', () => {
 
             // Handle responsive sidebar transitions
             let lastWidth = window.innerWidth;
+            let resizeTimeout = null;
+            
             window.addEventListener('resize', () => {
-                const currentWidth = window.innerWidth;
-                const lgBreakpoint = 1024;
+                if (resizeTimeout) clearTimeout(resizeTimeout);
                 
-                // Desktop -> Mobile: Auto-close sidebar to prevent overlay blocking screen
-                if (lastWidth >= lgBreakpoint && currentWidth < lgBreakpoint) {
-                    this.sidebarOpen = false;
-                }
-                
-                // Mobile -> Desktop: Auto-open sidebar (restore standard desktop layout)
-                if (lastWidth < lgBreakpoint && currentWidth >= lgBreakpoint) {
-                    this.sidebarOpen = true;
-                }
-                
-                lastWidth = currentWidth;
+                resizeTimeout = setTimeout(() => {
+                    const currentWidth = window.innerWidth;
+                    const lgBreakpoint = 1024;
+                    
+                    // Desktop -> Mobile: Auto-close sidebar to prevent overlay blocking screen
+                    if (lastWidth >= lgBreakpoint && currentWidth < lgBreakpoint) {
+                        this.sidebarOpen = false;
+                    }
+                    
+                    // Mobile -> Desktop: Auto-open sidebar (restore standard desktop layout)
+                    if (lastWidth < lgBreakpoint && currentWidth >= lgBreakpoint) {
+                        this.sidebarOpen = true;
+                    }
+                    
+                    lastWidth = currentWidth;
+                }, 150);
             });
 
             // Theme setup
