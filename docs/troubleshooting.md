@@ -1,5 +1,16 @@
 # Troubleshooting
 
+## Quick Links
+
+- [Windows: OAuth Port Error (EACCES)](#windows-oauth-port-error-eacces)
+- ["Could not extract token from Antigravity"](#could-not-extract-token-from-antigravity)
+- [401 Authentication Errors](#401-authentication-errors)
+- [Rate Limiting (429)](#rate-limiting-429)
+- [Account Shows as "Invalid"](#account-shows-as-invalid)
+- [403 Permission Denied](#403-permission-denied)
+
+---
+
 ## Windows: OAuth Port Error (EACCES)
 
 On Windows, the default OAuth callback port (51121) may be reserved by Hyper-V, WSL2, or Docker. If you see:
